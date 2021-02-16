@@ -3,7 +3,7 @@ using System.IO;
 
 namespace UnitTestExampleProgramme
 {
-    class FileReader
+    public class FileReader
     {
         public static string[] GetLinesFromTextFile(string filePath)
         {
