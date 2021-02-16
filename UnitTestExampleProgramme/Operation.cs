@@ -4,7 +4,7 @@ using System.Text;
 
 namespace UnitTestExampleProgramme
 {
-    enum Operation
+    public enum Operation
     {
         Addition,
         Subtraction,

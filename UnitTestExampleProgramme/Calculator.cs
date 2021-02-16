@@ -1,43 +1,84 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace UnitTestExampleProgramme
 {
-    class Calculator
+    public class Calculator
     {
-        public static double Add(List<double> doubles)
+        private static List<double> GetValuesFromFile(string filePath)
         {
+            List<double> values = new List<double>();
+            string[] fileInputs = { };
+            try
+            {
+                fileInputs = FileReader.GetLinesFromTextFile(filePath);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            if (fileInputs.Length == 0)
+            {
+                Console.WriteLine("Please fill in the numbers.txt file found with this programme.");
+                return null;
+            }
+
+
+            foreach (string fileInput in fileInputs)
+            {
+                try
+                {
+                    values.Add(Double.Parse(fileInput));
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Something went wrong while parsing the value {0}.\n", fileInput);
+                    Console.WriteLine(e.Message);
+                }
+            }
+
+            return values;
+        }
+
+        public static double Add(string filePath)
+        {
+            List<double> values = GetValuesFromFile(filePath);
             double result = 0.0;
-            foreach(double value in doubles)
+            foreach(double value in values)
             {
                 result += value;
             }
             return result;
         }
 
-        public static double Multiply(List<double> doubles)
+        public static double Multiply(string filePath)
         {
-            double result = doubles[0];
-            for(int i = 1; i < doubles.Count; i++)
+            List<double> values = GetValuesFromFile(filePath);
+            double result = values[0];
+            for(int i = 1; i < values.Count; i++)
             {
-                result *= doubles[i];
+                result *= values[i];
             }
             return result;
         }
 
-        public static double Subtract(List<double> doubles)
+        public static double Subtract(string filePath)
         {
-            double result = doubles[0];
-            for (int i = 1; i < doubles.Count; i++)
+            List<double> values = GetValuesFromFile(filePath);
+            double result = values[0];
+            for (int i = 1; i < values.Count; i++)
             {
-                result -= doubles[i];
+                result -= values[i];
             }
             return result;
         }
 
-        public static double Average(List<double> doubles)
+        public static double Average(string filePath)
         {
-            double sum = Add(doubles);
-            return sum / doubles.Count;
+            List<double> values = GetValuesFromFile(filePath);
+            double sum = Add(filePath);
+            return sum / values.Count;
         }
     }
 }
