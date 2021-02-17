@@ -13,14 +13,14 @@ namespace UnitTestExampleTests
         private Calculator calculator;
 
         [TestMethod]
-        public void TestDefaultConstructor()
+        public void DefaultConstructorShouldInitialiseWithFileReader()
         {
             calculator = new Calculator();
             Assert.IsNotNull(calculator.fileReader);
         }
 
         [TestMethod]
-        public void TestOverloadedConstructor()
+        public void OverloadedConstructorShouldInitialiseWithCorrectFileReader()
         {
             FileReader fileReader = new FileReader();
             calculator = new Calculator(fileReader);
@@ -28,7 +28,7 @@ namespace UnitTestExampleTests
         }
 
         [TestMethod]
-        public void TestAdditionWithOnlyPositiveNumbers()
+        public void AdditionWithOnlyPositiveNumbersShouldReturn()
         {
             
             List<string> values = new List<string>();
@@ -41,7 +41,7 @@ namespace UnitTestExampleTests
         }
 
         [TestMethod]
-        public void TestAdditionWithPositiveAndNegativeNumbers()
+        public void AdditionWithPositiveAndNegativeNumbersShouldReturn()
         {
             List<string> values = new List<string>();
             values.Add("1");
@@ -53,7 +53,7 @@ namespace UnitTestExampleTests
         }
 
         [TestMethod]
-        public void TestAdditionWithOnlyNegativeNumbers()
+        public void AdditionWithOnlyNegativeNumbersShouldReturn()
         {
             List<string> values = new List<string>();
             values.Add("-1");
@@ -65,7 +65,7 @@ namespace UnitTestExampleTests
         }
 
         [TestMethod]
-        public void TestSubtractionWithOnlyPositiveNumbers()
+        public void SubtractionWithOnlyPositiveNumbersShouldReturn()
         {
 
             List<string> values = new List<string>();
@@ -78,7 +78,7 @@ namespace UnitTestExampleTests
         }
 
         [TestMethod]
-        public void TestSubtractionWithPositiveAndNegativeNumbers()
+        public void SubtractionWithPositiveAndNegativeNumbersShouldReturn()
         {
             List<string> values = new List<string>();
             values.Add("1");
@@ -90,7 +90,7 @@ namespace UnitTestExampleTests
         }
 
         [TestMethod]
-        public void TestSubtractionWithOnlyNegativeNumbers()
+        public void SubtractionWithOnlyNegativeNumbersShouldReturn()
         {
             List<string> values = new List<string>();
             values.Add("-1");
@@ -102,7 +102,7 @@ namespace UnitTestExampleTests
         }
 
         [TestMethod]
-        public void TestMultiplicationWithOnlyPositiveNumbers()
+        public void MultiplicationWithOnlyPositiveNumbersShouldReturn()
         {
 
             List<string> values = new List<string>();
@@ -115,7 +115,7 @@ namespace UnitTestExampleTests
         }
 
         [TestMethod]
-        public void TestMultiplicationWithPositiveAndNegativeNumbers()
+        public void MultiplicationWithPositiveAndNegativeNumbersShouldReturn()
         {
             List<string> values = new List<string>();
             values.Add("2");
@@ -127,7 +127,7 @@ namespace UnitTestExampleTests
         }
 
         [TestMethod]
-        public void TestMultiplicationWithOnlyNegativeNumbers()
+        public void MultiplicationWithOnlyNegativeNumbersShouldReturn()
         {
             List<string> values = new List<string>();
             values.Add("-2");
@@ -139,9 +139,8 @@ namespace UnitTestExampleTests
         }
 
         [TestMethod]
-        public void TestAverageWithOnlyPositiveNumbers()
+        public void AverageWithOnlyPositiveNumbersShouldReturn()
         {
-
             List<string> values = new List<string>();
             values.Add("1");
             values.Add("2");
@@ -155,7 +154,7 @@ namespace UnitTestExampleTests
         }
 
         [TestMethod]
-        public void TestAverageWithPositiveAndNegativeNumbers()
+        public void AverageWithPositiveAndNegativeNumbersShouldReturn()
         {
             List<string> values = new List<string>();
             values.Add("1");
@@ -170,7 +169,7 @@ namespace UnitTestExampleTests
         }
 
         [TestMethod]
-        public void TestAverageWithOnlyNegativeNumbers()
+        public void AverageWithOnlyNegativeNumbersShouldReturn()
         {
             List<string> values = new List<string>();
             values.Add("-1");
@@ -182,6 +181,19 @@ namespace UnitTestExampleTests
             fileReader.Setup(x => x.GetLinesFromTextFile(filePath)).Returns(values.ToArray);
             calculator = new Calculator(fileReader.Object);
             Assert.AreEqual(-3, calculator.Average(filePath));
+        }
+
+        [TestMethod]
+        public void OperationWithZeroValuesShouldReturnZero()
+        {
+            List<string> values = new List<string>();
+            Mock<FileReader> fileReader = new Mock<FileReader>();
+            fileReader.Setup(x => x.GetLinesFromTextFile(filePath)).Returns(values.ToArray);
+            calculator = new Calculator(fileReader.Object);
+            Assert.AreEqual(0, calculator.Add(filePath));
+            Assert.AreEqual(0, calculator.Subtract(filePath));
+            Assert.AreEqual(0, calculator.Multiply(filePath));
+            Assert.AreEqual(0, calculator.Average(filePath));
         }
     }
 }
