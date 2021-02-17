@@ -5,13 +5,15 @@ namespace UnitTestExampleProgramme
 {
     public class Calculator
     {
-        private static List<double> GetValuesFromFile(string filePath)
+        FileReader fileReader = new FileReader();
+
+        private List<double> GetValuesFromFile(string filePath)
         {
             List<double> values = new List<double>();
             string[] fileInputs = { };
             try
             {
-                fileInputs = FileReader.GetLinesFromTextFile(filePath);
+                fileInputs = fileReader.GetLinesFromTextFile(filePath);
             }
             catch (Exception e)
             {
@@ -41,7 +43,7 @@ namespace UnitTestExampleProgramme
             return values;
         }
 
-        public static double Add(string filePath)
+        public double Add(string filePath)
         {
             List<double> values = GetValuesFromFile(filePath);
             double result = 0.0;
@@ -52,7 +54,7 @@ namespace UnitTestExampleProgramme
             return result;
         }
 
-        public static double Multiply(string filePath)
+        public double Multiply(string filePath)
         {
             List<double> values = GetValuesFromFile(filePath);
             double result = values[0];
@@ -63,7 +65,7 @@ namespace UnitTestExampleProgramme
             return result;
         }
 
-        public static double Subtract(string filePath)
+        public double Subtract(string filePath)
         {
             List<double> values = GetValuesFromFile(filePath);
             double result = values[0];
@@ -74,7 +76,7 @@ namespace UnitTestExampleProgramme
             return result;
         }
 
-        public static double Average(string filePath)
+        public double Average(string filePath)
         {
             List<double> values = GetValuesFromFile(filePath);
             double sum = Add(filePath);

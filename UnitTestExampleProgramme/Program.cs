@@ -5,7 +5,15 @@ namespace UnitTestExampleProgramme
 {
     class Program
     {
+        private Calculator calculator = new Calculator();
+
         static void Main(string[] args)
+        {
+            Program program = new Program();
+            program.Run();
+        }
+
+        private void Run()
         {
             Operation operation;
 
@@ -31,9 +39,9 @@ namespace UnitTestExampleProgramme
 
             string input = Console.ReadLine();
 
-            try 
-            { 
-                operation = (Operation) Enum.Parse(typeof(Operation), input, true);
+            try
+            {
+                operation = (Operation)Enum.Parse(typeof(Operation), input, true);
             }
             catch (ArgumentException)
             {
@@ -41,19 +49,19 @@ namespace UnitTestExampleProgramme
                 return;
             }
 
-            switch(operation)
+            switch (operation)
             {
                 case Operation.Addition:
-                    Console.WriteLine("The sum of the numbers you gave in the text file is {0}", Calculator.Add(filePath));
+                    Console.WriteLine("The sum of the numbers you gave in the text file is {0}", calculator.Add(filePath));
                     break;
                 case Operation.Subtraction:
-                    Console.WriteLine("The result of the subtraction of the numbers in the text file is {0}", Calculator.Subtract(filePath));
+                    Console.WriteLine("The result of the subtraction of the numbers in the text file is {0}", calculator.Subtract(filePath));
                     break;
                 case Operation.Multiplication:
-                    Console.WriteLine("The result of the multiplication of the numbers in the text file is {0}", Calculator.Multiply(filePath));
+                    Console.WriteLine("The result of the multiplication of the numbers in the text file is {0}", calculator.Multiply(filePath));
                     break;
                 case Operation.Average:
-                    Console.WriteLine("The average of the numbers you gave in the text file is {0}", Calculator.Average(filePath));
+                    Console.WriteLine("The average of the numbers you gave in the text file is {0}", calculator.Average(filePath));
                     break;
             }
 
@@ -66,7 +74,6 @@ namespace UnitTestExampleProgramme
                 Console.WriteLine("Something went wrong while deleting the numbers.txt file.");
                 Console.WriteLine(e.Message);
             }
-            
         }
     }
 }
