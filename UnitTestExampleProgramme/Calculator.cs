@@ -58,6 +58,10 @@ namespace UnitTestExampleProgramme
         public double Add(string filePath)
         {
             List<double> values = GetValuesFromFile(filePath);
+            if (values == null)
+            {
+                return 0;
+            }
             double result = 0.0;
             foreach(double value in values)
             {
@@ -69,6 +73,10 @@ namespace UnitTestExampleProgramme
         public double Multiply(string filePath)
         {
             List<double> values = GetValuesFromFile(filePath);
+            if (values == null)
+            {
+                return 0;
+            }
             double result = values[0];
             for(int i = 1; i < values.Count; i++)
             {
@@ -80,6 +88,10 @@ namespace UnitTestExampleProgramme
         public double Subtract(string filePath)
         {
             List<double> values = GetValuesFromFile(filePath);
+            if (values == null)
+            {
+                return 0;
+            }
             double result = values[0];
             for (int i = 1; i < values.Count; i++)
             {
@@ -91,6 +103,10 @@ namespace UnitTestExampleProgramme
         public double Average(string filePath)
         {
             List<double> values = GetValuesFromFile(filePath);
+            if (values == null)
+            {
+                return 0;
+            }
             double sum = Add(filePath);
             return sum / values.Count;
         }
