@@ -5,7 +5,7 @@ namespace UnitTestExampleProgramme
 {
     public class Calculator
     {
-        FileReader fileReader;
+        public FileReader fileReader { get; }
 
         public Calculator()
         {
