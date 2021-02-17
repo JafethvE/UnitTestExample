@@ -5,7 +5,7 @@ namespace UnitTestExampleProgramme
 {
     public class FileReader
     {
-        public string[] GetLinesFromTextFile(string filePath)
+        public virtual string[] GetLinesFromTextFile(string filePath)
         {
             try
             { 

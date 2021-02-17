@@ -5,7 +5,17 @@ namespace UnitTestExampleProgramme
 {
     public class Calculator
     {
-        FileReader fileReader = new FileReader();
+        FileReader fileReader;
+
+        public Calculator()
+        {
+            fileReader = new FileReader();
+        }
+
+        public Calculator(FileReader fileReader)
+        {
+            this.fileReader = fileReader;
+        }
 
         private List<double> GetValuesFromFile(string filePath)
         {
