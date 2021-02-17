@@ -27,7 +27,9 @@ namespace UnitTestExampleProgramme
             }
             catch (Exception e)
             {
-                throw e;
+                Console.WriteLine("Something went wrong while opening the numbers.txt file.");
+                Console.WriteLine(e.Message);
+                return null;
             }
 
             if (fileInputs.Length == 0)
