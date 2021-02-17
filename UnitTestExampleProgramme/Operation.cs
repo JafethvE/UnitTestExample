@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace UnitTestExampleProgramme
+﻿namespace UnitTestExampleProgramme
 {
     public enum Operation
     {
